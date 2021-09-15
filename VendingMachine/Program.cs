@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace VendingMachine
 {
@@ -6,9 +7,10 @@ namespace VendingMachine
     {
         static void Main(string[] args)
         {
+            AutomatData data = new AutomatData();
+            AutomatLogic logic = new AutomatLogic(data);
+            AdminMenu menu = new AdminMenu(data, logic);
 
-            AutomatLogic logic = new AutomatLogic();
-            AdminMenu menu = new AdminMenu();
             bool automatRepeat = true;
 
             // Show products and price.
@@ -25,9 +27,7 @@ namespace VendingMachine
                     else
                     {
                         Console.WriteLine("({0}) {1} ~ {2},- DKK kr.", product.ProductNumber, product.ProductName, product.ProductPrice);
-                    }
-
-                    Console.WriteLine("");
+                    }  
                 }
 
                 
@@ -77,47 +77,14 @@ namespace VendingMachine
                     case "#":
                         {
                             menu.GetAdminMenu();
-
-                            //bool adminRepeat = true;
-                            //int password = 1433;
-                            //Console.WriteLine("Enter password");
-                            
-                            //do
-                            //{
-
-                            //    int enteredPassword = int.Parse(Console.ReadLine());
-
-                            //    if (enteredPassword == password)
-                            //    {
-                            //        //Console.Clear();
-                            //        Console.WriteLine("~ Admin menu ~");
-                            //        Console.WriteLine("(1) Add new product.");
-                            //        Console.WriteLine("(2) Change Products Price.");
-                            //        Console.WriteLine("(3) Show Stock On Products.");
-                            //        Console.WriteLine("(4) Refill Products.");
-                            //        Console.WriteLine("(5) Cash Out.");
-                                    
-                            //    }
-                            //    else
-                            //    {
-                            //        Console.Clear();
-                            //        Console.WriteLine("Access Prohibited.\n");
-                            //        Console.WriteLine("Press 1 to try again or 2 to go back to the buyers menu.");
-                            //        int adminRepeatInput = int.Parse(Console.ReadLine());
-                            //        if (adminRepeatInput != 1)
-                            //        {
-                            //            adminRepeat = false;
-                            //        }
-                            //        else if (adminRepeatInput == 2)
-                            //        {
-                            //            Console.Clear();
-                            //            adminRepeat = false;
-                                       
-                            //        }
-                            //    }
-                            //} while (adminRepeat == true);
-                            
-
+                            break;
+                        }
+                    default:
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You entered a product that doesn't exist.");
+                            Thread.Sleep(3000);
+                            automatRepeat = true;
                             break;
                         }
                 }

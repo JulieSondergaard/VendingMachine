@@ -60,12 +60,12 @@ namespace VendingMachine
         }
         #endregion
 
-        public Product(string productName, int productPrice, int productStock, int productNumber)
+        public Product(string _productName, int _productPrice, int _productStock, int _productNumber)
         {
-            this.productName = productName;
-            this.productPrice = productPrice;
-            this.productStock = productStock;
-            this.productNumber = productNumber;
+            productName = _productName;
+            productPrice = _productPrice;
+            productStock = _productStock;
+            productNumber = _productNumber;
         }
     }
 }
